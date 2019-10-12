@@ -1,0 +1,53 @@
+﻿@model HPStask.ViewModel.patientResult
+@{
+    ViewBag.Title = "PatientResult";
+}
+
+<section id="div_print" class="invoice">
+    <!-- title row -->
+    <div class="row">
+        <div class="col-xs-12">
+            <h2 class="page-header">
+                <i class="fa fa-globe"></i> Result
+                <small class="pull-right">@Model.patient</small>
+                <small class="pull-right">@Model.resultDate</small>
+            </h2>
+        </div><!-- /.col -->
+    </div>
+    <!-- info row -->
+    <div class="row invoice-info">
+        <div class="col-sm-8 invoice-col">
+            
+            <address>
+               <p>@Model.result</p>
+            </address>
+        </div><!-- /.col -->
+      
+      
+    </div><!-- /.row -->
+    <!-- Table row -->
+
+
+
+    <!-- this row will not appear when printing -->
+    <div class="row no-print">
+        <div class="col-xs-12">
+            <a href="#" id="printbtn" class="btn btn-default" onclick="printdiv('div_print')"><i class="fa fa-print" ></i> Print</a>
+           
+        </div>
+    </div>
+</section>
+<script>
+    function printdiv(printpage) {
+        document.getElementById('printbtn').style.visibility = 'hidden';
+        var headstr = "<html><head><title></title></head><body>";
+        var footstr = "</body>";
+        var newstr = document.all.item(printpage).innerHTML;
+        var oldstr = document.body.innerHTML;
+        document.body.innerHTML = headstr + newstr + footstr;
+        window.print();
+        document.body.innerHTML = oldstr;
+        return false;
+    }
+</script>
+
